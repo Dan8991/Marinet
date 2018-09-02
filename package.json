@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "webpack": "^4.17.1"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "eslint": "^5.5.0",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.0.3",
+    "webpack-cli": "^3.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "experimentalDecorators": true,
+        "target": "es2017",
+        "jsx": "react"
+    },
+    "include": [
+        "./src/client/**/*"
+    ]
+}
