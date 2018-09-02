@@ -2,6 +2,7 @@
 
 This is a personal project made for fun. <br/>
 Marinet should become a small social network where users can:
-* login 
-* add text posts
-* follow other users
+* create their own user (TODO)
+* login (TODO)
+* add text posts (TODO)
+* follow other users (TODO)
