@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/client/index.tsx",
     output: {
         filename: "bundle.js",
-        path: __dirname + "/src/server/static"
+        path: __dirname + "/dist"
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -22,7 +22,7 @@ module.exports = {
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     },
-
+    mode:'development',
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
@@ -31,4 +31,16 @@ module.exports = {
     //     "react": "React",
     //     "react-dom": "ReactDOM"
     // }
+    devServer: {
+        contentBase: './src/client',
+        port: 9000,
+        host:'localhost',
+        headers: {
+                'Access-Control-Allow-Origin': '*'
+        },
+        proxy: {
+            "/api": "http://localhost:5000",
+            changeOrigin:true,
+        }
+    }
 };
