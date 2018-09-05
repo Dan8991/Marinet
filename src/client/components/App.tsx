@@ -1,9 +1,10 @@
 import * as React from "react";
+import { Login } from "./pages/Login";
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class Hello extends React.Component<{}, {}> {
+export class App extends React.Component<{}, {}> {
     render() {
-        return <h1>Hello Marinet!</h1>;
+        return <Login/>;
     }
 }

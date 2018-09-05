@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/hello";
+import { App } from "./components/App";
 import { AppContainer } from 'react-hot-loader'
 
 const rootEl = document.getElementById("main");
@@ -15,10 +15,10 @@ const render = (Component:any) => {
     );
 }
 
-render(Hello);
+render(App);
 
 if (module.hot) {
     module.hot.accept(() => {
-        render(Hello);
+        render(App);
     });
 }
