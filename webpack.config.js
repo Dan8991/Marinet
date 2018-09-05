@@ -1,5 +1,9 @@
+const webpack = require('webpack');
 module.exports = {
-    entry: "./src/client/index.tsx",
+    entry: ["./src/client/index.tsx",
+    'react-hot-loader/patch',
+    'webpack/hot/only-dev-server'
+    ],
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
@@ -19,18 +23,23 @@ module.exports = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
         ]
     },
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        // enable HMR globally
+    
+        new webpack.NamedModulesPlugin(),
+        // prints more readable module names in the browser console on HMR updates
+    
+        new webpack.NoEmitOnErrorsPlugin(),
+        // do not emit compiled assets that include errors
+    ],
+
     mode:'development',
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    // externals: {
-    //     "react": "React",
-    //     "react-dom": "ReactDOM"
-    // }
+
     devServer: {
         contentBase: './src/client',
         port: 9000,

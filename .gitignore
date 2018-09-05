@@ -10,3 +10,6 @@ src/server/__pycache__/
 
 #js dependencies
 node_modules
+
+#generated bundle
+dist
