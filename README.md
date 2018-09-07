@@ -9,7 +9,7 @@ Marinet should become a small social network where users can:
 
 # Run development enviroment
 
-'''bash
+```bash
 cd tools
 ./run.sh
-'''
+```
