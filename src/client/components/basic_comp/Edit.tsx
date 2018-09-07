@@ -1,17 +1,17 @@
 import * as React from "react";
 
-export interface IStateEdit {
+export interface IEditState {
     value: string;
 }
 
-export interface IPropsEdit{
+export interface IEditProps{
     hint?:string;
 }
 
 //basic input component
 //TODO:add style
 
-export class Edit extends React.Component<IPropsEdit, IStateEdit> {
+export class Edit extends React.Component<IEditProps, IEditState> {
 
     constructor(props: any) {
         super(props);
