@@ -13,7 +13,7 @@ export interface IEditProps{
 
 export class Edit extends React.Component<IEditProps, IEditState> {
 
-    constructor(props: any) {
+    constructor(props: IEditProps) {
         super(props);
         this.state = { value: "" };
     }
