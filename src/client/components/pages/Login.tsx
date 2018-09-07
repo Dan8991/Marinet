@@ -1,13 +1,21 @@
 import * as React from "react"
-import {Edit} from "../basic_comp/Edit"
-import { Button } from "../basic_comp/Button";
+import { LoginBlock } from "./LoginBlock";
+
+const h1Style = {
+    //workaround because textAlign:"center" is not working
+    textAlign:"center" as "center",
+    fontSize:"40px",
+    color:"#087220"
+}
 
 export class Login extends React.Component<{},{}> {
     render() {
         return (
             <div>
-                <Edit/>
-                <Button/>
+                <div style={h1Style}>
+                    <h1> Welcome to Marinet</h1>                    
+                </div>
+                <LoginBlock/>
             </div>
         );
     }
