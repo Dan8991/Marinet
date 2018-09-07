@@ -1,0 +1,27 @@
+@startuml
+
+top to bottom direction
+scale 1
+title "Database Model"
+
+class User{
+    id: integer
+    username: string
+}
+
+class UserFollows{
+    id: integer
+    followedId: integer
+    followerId: integer
+}
+
+class Comments{
+    id:integer
+    comment:string
+    userId:integer
+}
+
+User <-left->Comments
+(User,User) .. UserFollows
+
+@enduml
