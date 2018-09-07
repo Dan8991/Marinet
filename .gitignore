@@ -16,3 +16,6 @@ dist
 
 #tslint settings
 tslint.json
+
+#psql settings
+src/server/settings
