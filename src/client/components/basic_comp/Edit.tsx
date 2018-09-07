@@ -4,10 +4,14 @@ export interface IStateEdit {
     value: string;
 }
 
+export interface IPropsEdit{
+    hint?:string;
+}
+
 //basic input component
 //TODO:add style
 
-export class Edit extends React.Component<{}, IStateEdit> {
+export class Edit extends React.Component<IPropsEdit, IStateEdit> {
 
     constructor(props: any) {
         super(props);
@@ -16,10 +20,9 @@ export class Edit extends React.Component<{}, IStateEdit> {
 
     handleChange: (e: any) => void = (e: any) => {
         this.setState({ value: e.target.value });
-        console.log(this.state.value);
     };
 
     render() {
-        return <input onChange={this.handleChange}></input>;
+        return <input placeholder={this.props.hint||""} onChange={this.handleChange}></input>;
     }
 }
