@@ -18,12 +18,17 @@ DB = PostgresqlDatabase(
     port=PORT
 )
 
+def init_tables():
+    Users.create_table(True)
+    UserFollows.create_table(True)
+    Comments.create_table(True)
+
 
 class BasicModel(Model):
     class Meta:
         database = DB
 
-class User(BasicModel):
+class Users(BasicModel):
     id = IntegerField()
     username = CharField()
 
