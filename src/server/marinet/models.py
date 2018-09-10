@@ -29,16 +29,13 @@ class BasicModel(Model):
         database = DB
 
 class Users(BasicModel):
-    id = IntegerField()
     username = CharField()
 
 class UserFollows(BasicModel):
-    id = IntegerField()
     follower_id = IntegerField()
     followed_id = IntegerField()
 
 class Comments(BasicModel):
-    id = IntegerField()
     comment = CharField()
     user_id = IntegerField
 
