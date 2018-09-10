@@ -1,0 +1,10 @@
+marinet/__init__.py
+marinet/get_db_infos.py
+marinet/init_db.py
+marinet/models.py
+marinet/users.py
+marinet.egg-info/PKG-INFO
+marinet.egg-info/SOURCES.txt
+marinet.egg-info/dependency_links.txt
+marinet.egg-info/requires.txt
+marinet.egg-info/top_level.txt
