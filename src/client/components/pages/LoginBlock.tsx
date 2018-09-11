@@ -2,6 +2,12 @@ import * as React from "react";
 import { Edit } from "../basic_comp/Edit"
 import { Button } from "../basic_comp/Button";
 
+export interface ILoginBlockState {
+    username: string;
+    password: string;
+    id: number;
+}
+
 const externGridStyle = {
     display: "grid",
     gridTemplateColumns: "auto",
@@ -18,42 +24,60 @@ const internGridCenter = {
 }
 
 
-export class LoginBlock extends React.Component<{}, {}> {
+export class LoginBlock extends React.Component<{}, ILoginBlockState> {
 
-    
     constructor(props: any) {
         super(props);
+        this.state = { username: "", password: "", id: -1 };
     }
-    
-    
+
+
+
     render() {
         return (
             <div style={externGridStyle}>
                 <div style={internGridCenter}>
-                    <Button text="Log in" />
-                    <Button text="Sign in" onClick={()=>{this.signIn("daniele")}}/>
+                    <Button text="Log in"/>
+                    <Button
+                        text="Sign in"
+                        onClick={() => {
+                            this.signIn(this.state.username, this.state.password)
+                        }}
+                    />
                 </div>
                 <div>
-                    <Edit hint="username" />
+                    <Edit hint="username" handleChange={this.onUsernameChange} />
                 </div>
                 <div>
-                    <Edit hint="password" />
+                    <Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
                 </div>
             </div>
         );
     }
 
-    public signIn: (username: string) => void = (user: string) => {
-        let myInit = { 
+    private onUsernameChange: (val: string) => void = (val: string) => {
+        this.setState({ username: val });
+    }
+
+    private onPasswordChange: (val: string) => void = (val: string) => {
+        this.setState({ password: val });
+    }
+
+    private signIn: (username: string, password: string) => void = (user: string, password: string) => {
+
+        let myInit = {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({username:user})
+            body: JSON.stringify({ username: user, password: password })
         };
-        fetch("http://127.0.0.1:5000/api/users", myInit).then((e:any)=>{
-            console.log("done");
-        })
+
+        fetch("http://127.0.0.1:5000/api/users", myInit).then((result: any) => {
+            result.json().then((json: { id: number }) => {
+                this.setState({ id: json.id })
+            });
+        });
     }
 }

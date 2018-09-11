@@ -1,28 +1,31 @@
 import * as React from "react";
 
-export interface IEditState {
-    value: string;
-}
-
-export interface IEditProps{
-    hint?:string;
+export interface IEditProps {
+    hint?: string;
+    handleChange?: (val: string) => void;
+    isPassword?: boolean;
 }
 
 //basic input component
 //TODO:add style
 
-export class Edit extends React.Component<IEditProps, IEditState> {
+export class Edit extends React.Component<IEditProps, {}> {
 
     constructor(props: IEditProps) {
         super(props);
-        this.state = { value: "" };
     }
 
     handleChange: (e: any) => void = (e: any) => {
-        this.setState({ value: e.target.value });
+        this.props.handleChange(e.target.value);
     };
 
     render() {
-        return <input placeholder={this.props.hint||""} onChange={this.handleChange}></input>;
+        return (
+            <input
+                type={this.props.isPassword ? "password" : "text"}
+                placeholder={this.props.hint || ""}
+                onChange={this.handleChange}>
+            </input>
+        );
     }
 }

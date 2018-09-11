@@ -1,4 +1,4 @@
-from flask import request
+from flask import jsonify, request
 from flask_cors import CORS
 from marinet import App
 from marinet.models import Users
@@ -8,9 +8,8 @@ CORS(App)
 def users_api():
     json = request.json
     req = request.method
-    print(json)
     if req == 'POST' and json != None:
-        Users.insert(json).execute()
-        return "user inserted"
+        id = Users.insert(json).execute()
+        return jsonify({"id":id})
     else:
         return "blank json"
