@@ -1,6 +1,7 @@
 marinet/__init__.py
 marinet/get_db_infos.py
 marinet/init_db.py
+marinet/main.py
 marinet/models.py
 marinet/users.py
 marinet.egg-info/PKG-INFO
