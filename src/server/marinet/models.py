@@ -30,6 +30,7 @@ class BasicModel(Model):
 
 class Users(BasicModel):
     username = CharField()
+    password = CharField()
 
 class UserFollows(BasicModel):
     follower_id = IntegerField()

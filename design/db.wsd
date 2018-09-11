@@ -6,6 +6,7 @@ title "Database Model"
 
 class User{
     id: integer
+    password:string
     username: string
 }
 
