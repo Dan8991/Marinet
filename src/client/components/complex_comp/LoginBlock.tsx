@@ -5,7 +5,6 @@ import { Button } from "../basic_comp/Button";
 export interface ILoginBlockState {
     username: string;
     password: string;
-    id: number;
 }
 
 const externGridStyle = {
@@ -23,12 +22,17 @@ const internGridCenter = {
     justifyContent: "center",
 }
 
+export interface ILoginBlockProps {
+    onLogInClick: () => void;
+    onSignInClick: () => void;
+}
 
-export class LoginBlock extends React.Component<{}, ILoginBlockState> {
 
-    constructor(props: any) {
+export class LoginBlock extends React.Component<ILoginBlockProps, ILoginBlockState> {
+
+    constructor(props: ILoginBlockProps) {
         super(props);
-        this.state = { username: "", password: "", id: -1 };
+        this.state = { username: "", password: ""};
     }
 
 
@@ -37,11 +41,16 @@ export class LoginBlock extends React.Component<{}, ILoginBlockState> {
         return (
             <div style={externGridStyle}>
                 <div style={internGridCenter}>
-                    <Button text="Log in"/>
+                    <Button 
+                        text="Log in"
+                        onClick={() => {
+                            this.onLogInClick(this.state.username, this.state.password)
+                        }}
+                    />
                     <Button
                         text="Sign in"
                         onClick={() => {
-                            this.signIn(this.state.username, this.state.password)
+                            this.onSignInClick(this.state.username, this.state.password)
                         }}
                     />
                 </div>
@@ -63,7 +72,7 @@ export class LoginBlock extends React.Component<{}, ILoginBlockState> {
         this.setState({ password: e.target.value });
     }
 
-    private signIn: (username: string, password: string) => void = (user: string, password: string) => {
+    private onSignInClick: (username: string, password: string) => void = (username: string, password: string) => {
 
         let myInit = {
             method: 'POST',
@@ -71,12 +80,30 @@ export class LoginBlock extends React.Component<{}, ILoginBlockState> {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username: user, password: password })
+            body: JSON.stringify({ username: username, password: password })
         };
 
         fetch("http://127.0.0.1:5000/api/users", myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
-                this.setState({ id: json.id })
+                if(json.id > 0){
+                    this.props.onSignInClick()
+                }
+            });
+        });
+    }
+
+    private onLogInClick: (username: string, password: string) => void = (username: string, password: string) => {
+
+        let myInit = {
+            method: 'GET',
+            headers: new Headers()
+        };
+
+        fetch("http://127.0.0.1:5000/api/users?username="+username+"&password="+password, myInit).then((result: any) => {
+            result.json().then((json: { id: number }) => {
+                if(json.id > 0){
+                    this.props.onLogInClick()
+                }
             });
         });
     }

@@ -12,9 +12,9 @@ export interface IEditProps {
 export function Edit(props: IEditProps) {
     return (
         <input
-            type={this.props.isPassword ? "password" : "text"}
-            placeholder={this.props.hint || ""}
-            onChange={this.props.handleChange}>
+            type={props.isPassword ? "password" : "text"}
+            placeholder={props.hint || ""}
+            onChange={props.handleChange}>
         </input>
     );
 }
