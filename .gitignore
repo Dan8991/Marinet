@@ -19,3 +19,6 @@ tslint.json
 
 #psql settings
 src/server/settings
+
+#python linter settings
+.pylintrc

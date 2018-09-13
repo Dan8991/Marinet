@@ -1,15 +1,23 @@
+"""this module handles requests for Users"""
 from flask import jsonify, request
 from flask_cors import CORS
 from marinet import App
 from marinet.models import Users
 CORS(App)
 
-@App.route('/api/users', methods=["POST"])
+
+@App.route('/api/users', methods=["GET", "POST"])
 def users_api():
+    """this method handles requests for Users"""
     json = request.json
     req = request.method
-    if req == 'POST' and json != None:
-        id = Users.insert(json).execute()
-        return jsonify({"id":id})
-    else:
-        return "blank json"
+    if req == 'POST' and json is not None:
+        user_id = Users.insert(json).execute()
+        return jsonify({"id": user_id})
+    if req == 'GET':
+        username = request.args.get("username")
+        password = request.args.get("password")
+        Users.select("id").where(Users.password ==
+                                 password, Users.username == username)
+        return "get request"
+    return "no request"

@@ -1,5 +1,8 @@
-from marinet import App
+"""Module that handles the root path in the server"""
+from marinet import APP
 
-@App.route('/')
+
+@APP.route('/')
 def main():
+    """Method that handles the root path in the server"""
     return "hello world"
