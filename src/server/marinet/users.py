@@ -17,7 +17,12 @@ def users_api():
     if req == 'GET':
         username = request.args.get("username")
         password = request.args.get("password")
-        Users.select("id").where(Users.password ==
-                                 password, Users.username == username)
-        return "get request"
+        user = Users.get_or_none(Users.username == username)
+        if user is not None:
+            if user.password == password:
+                return jsonify({"id": user.id})
+            #id=-1 => invalid password
+            return jsonify({"id": -1})
+        #id=-1 => invalid username
+        return jsonify({"id": -2})
     return "no request"
