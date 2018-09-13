@@ -55,12 +55,12 @@ export class LoginBlock extends React.Component<{}, ILoginBlockState> {
         );
     }
 
-    private onUsernameChange: (val: string) => void = (val: string) => {
-        this.setState({ username: val });
+    private onUsernameChange: (e: any) => void = (e: any) => {
+        this.setState({ username: e.target.value });
     }
 
-    private onPasswordChange: (val: string) => void = (val: string) => {
-        this.setState({ password: val });
+    private onPasswordChange: (e: any) => void = (e: any) => {
+        this.setState({ password: e.target.value });
     }
 
     private signIn: (username: string, password: string) => void = (user: string, password: string) => {

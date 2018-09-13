@@ -1,5 +1,5 @@
 import * as React from "react"
-import { LoginBlock } from "./LoginBlock";
+import { LoginBlock } from "../complex_comp/LoginBlock";
 
 const h1Style = {
     //workaround because textAlign:"center" is not working
