@@ -1,12 +1,12 @@
 """this module handles requests for Users"""
 from flask import jsonify, request
 from flask_cors import CORS
-from marinet import App
+from marinet import APP
 from marinet.models import Users
-CORS(App)
+CORS(APP)
 
 
-@App.route('/api/users', methods=["GET", "POST"])
+@APP.route('/api/users', methods=["GET", "POST"])
 def users_api():
     """this method handles requests for Users"""
     json = request.json
