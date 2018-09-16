@@ -28,7 +28,7 @@ export class App extends React.Component<{}, IAppState> {
         this.setState({ isLogged: true })
     }
 
-    private onSignInClick: () => void = () => {
+    private onSignUpClick: () => void = () => {
         this.setState({ isLogged: true, isNewUser:true })
     }
 
@@ -41,7 +41,7 @@ export class App extends React.Component<{}, IAppState> {
                 {
                     this.state.isLogged ? 
                     <MarinetPage isNewUser={this.state.isNewUser} /> : 
-                    <Login onLogInClick={this.onLogInClick} onSignInClick={this.onSignInClick}/>
+                    <Login onLogInClick={this.onLogInClick} onSignUpClick={this.onSignUpClick}/>
                 }
             </div>
         );

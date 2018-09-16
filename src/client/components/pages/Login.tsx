@@ -31,7 +31,7 @@ const errorStyle = {
 
 export interface ILoginProps {
     onLogInClick: () => void;
-    onSignInClick: () => void;
+    onSignUpClick: () => void;
 }
 
 
@@ -55,9 +55,9 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         }}
                     />
                     <Button
-                        text="Sign in"
+                        text="Sign up"
                         onClick={() => {
-                            this.onSignInClick(this.state.username, this.state.password)
+                            this.onSignUpClick(this.state.username, this.state.password)
                         }}
                     />
                 </div>
@@ -82,7 +82,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         this.setState({ password: e.target.value });
     }
 
-    private onSignInClick: (username: string, password: string) => void = (username: string, password: string) => {
+    private onSignUpClick: (username: string, password: string) => void = (username: string, password: string) => {
 
         let myInit = {
             method: 'POST',
@@ -96,7 +96,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         fetch("http://127.0.0.1:5000/api/users", myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
                 if (json.id > 0) {
-                    this.props.onSignInClick()
+                    this.props.onSignUpClick()
                 } else {
                     this.setState({error: "username already exists"});
                 }
