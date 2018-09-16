@@ -7,3 +7,4 @@ CORS(APP)
 
 import marinet.main
 import marinet.users
+import marinet.comments

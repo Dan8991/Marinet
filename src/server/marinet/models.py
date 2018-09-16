@@ -51,3 +51,8 @@ class Comments(BasicModel):
     comment = CharField()
     user_id = IntegerField()
     created_date = DateTimeField(default=datetime.datetime.now)
+
+    def to_json(self):
+        """returns a dictionary representing the comment"""
+        user = Users.get(Users.id == self.user_id)
+        return {"comment":self.comment, "username":user.username}

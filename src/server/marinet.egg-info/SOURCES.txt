@@ -1,4 +1,5 @@
 marinet/__init__.py
+marinet/comments.py
 marinet/get_db_infos.py
 marinet/init_db.py
 marinet/main.py
