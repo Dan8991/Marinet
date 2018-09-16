@@ -1,9 +1,12 @@
 import * as React from "react";
 import { CommentsInput } from "../basic_comp/CommentsInput";
 import { Button } from "../basic_comp/Button";
+import { IComment } from "../App";
+import {Comment} from "../basic_comp/Comment"
 
 export interface IMarinetPageProps {
-    isNewUser: boolean
+    isNewUser: boolean;
+    comments: IComment[];
 }
 
 // const commentsInStyle = {
@@ -34,12 +37,17 @@ export class MarinetPage extends React.Component<IMarinetPageProps, {}> {
 
     render() {
         return(
-            <div style={commentsInStyle}>
-                <div/>
-                <CommentsInput/>
-                <div style={btnPosStyle}>
-                    <Button onClick={()=>{}}/>
+            <div>
+                <div style={commentsInStyle}>
+                    <div/>
+                    <CommentsInput/>
+                    <div style={btnPosStyle}>
+                        <Button onClick={()=>{}}/>
+                    </div>
                 </div>
+                {this.props.comments.map((comment:IComment)=>{
+                    return <Comment comment={comment}/>
+                })}
             </div>
         );
     }
