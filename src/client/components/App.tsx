@@ -21,7 +21,7 @@ export class App extends React.Component<{}, IAppState> {
 
     constructor(props: any) {
         super(props);
-        this.state = { isLogged: true, isNewUser: false }
+        this.state = { isLogged: false, isNewUser: false }
     }
 
     private onLogInClick: () => void = () => {

@@ -5,12 +5,13 @@ import { Button } from "../basic_comp/Button";
 export interface ILoginState {
     username: string;
     password: string;
+    error: string;
 }
 
 const externGridStyle = {
     display: "grid",
     gridTemplateColumns: "auto",
-    gridTemplateRows: "auto auto auto",
+    gridTemplateRows: "auto auto auto auto",
     gridGap: "10px",
     justifyContent: "center",
 }
@@ -20,6 +21,12 @@ const internGridCenter = {
     gridTemplateColumns: "auto auto",
     gridGap: "5px",
     justifyContent: "center",
+}
+
+const errorStyle = {
+    color: "red",
+    textAlign: "center" as "center",
+    fontSize:"15px"
 }
 
 export interface ILoginProps {
@@ -32,7 +39,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
     constructor(props: ILoginProps) {
         super(props);
-        this.state = { username: "", password: ""};
+        this.state = { username: "", password: "", error: "" };
     }
 
 
@@ -41,7 +48,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         return (
             <div style={externGridStyle}>
                 <div style={internGridCenter}>
-                    <Button 
+                    <Button
                         text="Log in"
                         onClick={() => {
                             this.onLogInClick(this.state.username, this.state.password)
@@ -59,6 +66,9 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                 </div>
                 <div>
                     <Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
+                </div>
+                <div>
+                    <h1 style={errorStyle}>{this.state.error}</h1>
                 </div>
             </div>
         );
@@ -85,8 +95,10 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
         fetch("http://127.0.0.1:5000/api/users", myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
-                if(json.id > 0){
+                if (json.id > 0) {
                     this.props.onSignInClick()
+                } else {
+                    this.setState({error: "username already exists"});
                 }
             });
         });
@@ -99,10 +111,14 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
             headers: new Headers()
         };
 
-        fetch("http://127.0.0.1:5000/api/users?username="+username+"&password="+password, myInit).then((result: any) => {
+        fetch("http://127.0.0.1:5000/api/users?username=" + username + "&password=" + password, myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
-                if(json.id > 0){
+                if (json.id > 0) {
                     this.props.onLogInClick()
+                } else if (json.id === -1){
+                    this.setState({error: "incorrect password"});
+                } else if (json.id === -2){
+                    this.setState({error: "username does not exist"});
                 }
             });
         });
