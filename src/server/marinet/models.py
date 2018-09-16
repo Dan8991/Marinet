@@ -1,6 +1,7 @@
 """Module where the peewee representations of the db tables are defined"""
+import datetime
 import re
-from peewee import Model, IntegerField, CharField, PostgresqlDatabase
+from peewee import Model, IntegerField, CharField, PostgresqlDatabase, DateTimeField
 
 FILE = open("./settings/postgres_settings.txt")
 
@@ -48,4 +49,5 @@ class UserFollows(BasicModel):
 class Comments(BasicModel):
     """Class that describes the Comments table"""
     comment = CharField()
-    user_id = IntegerField
+    user_id = IntegerField()
+    created_date = DateTimeField(default=datetime.datetime.now)
