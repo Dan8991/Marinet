@@ -26,12 +26,12 @@ const internGridCenter = {
 const errorStyle = {
     color: "red",
     textAlign: "center" as "center",
-    fontSize:"15px"
+    fontSize: "15px"
 }
 
 export interface ILoginProps {
-    onLogInClick: () => void;
-    onSignUpClick: () => void;
+    onLogInClick: (userId: number) => void;
+    onSignUpClick: (userId: number) => void;
 }
 
 
@@ -96,9 +96,9 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         fetch("http://127.0.0.1:5000/api/users", myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
                 if (json.id > 0) {
-                    this.props.onSignUpClick()
+                    this.props.onSignUpClick(json.id)
                 } else {
-                    this.setState({error: "username already exists"});
+                    this.setState({ error: "username already exists" });
                 }
             });
         });
@@ -114,11 +114,11 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         fetch("http://127.0.0.1:5000/api/users?username=" + username + "&password=" + password, myInit).then((result: any) => {
             result.json().then((json: { id: number }) => {
                 if (json.id > 0) {
-                    this.props.onLogInClick()
-                } else if (json.id === -1){
-                    this.setState({error: "incorrect password"});
-                } else if (json.id === -2){
-                    this.setState({error: "username does not exist"});
+                    this.props.onLogInClick(json.id)
+                } else if (json.id === -1) {
+                    this.setState({ error: "incorrect password" });
+                } else if (json.id === -2) {
+                    this.setState({ error: "username does not exist" });
                 }
             });
         });
