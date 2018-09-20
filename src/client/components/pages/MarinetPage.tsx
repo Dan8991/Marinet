@@ -48,22 +48,26 @@ export class MarinetPage extends React.Component<IMarinetPageProps, IMarinetPage
     }
 
     private onPostCommentClick: () => void = () => {
-        let myInit = {
-            method: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ user_id: this.props.userId, comment: this.state.commentText })
-        };
+        if (this.state.commentText != ""){
+            let myInit = {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ user_id: this.props.userId, comment: this.state.commentText })
+            };
 
-        fetch("http://127.0.0.1:5000/api/comments", myInit).then((result: any) => {
-            result.json().then((json: { comment: string, username: string }) => {
-                this.state.commentRef.value = "";
-                this.setState({ commentText: "" });
-                this.props.onCommentPost(json);
+            fetch("http://127.0.0.1:5000/api/comments", myInit).then((result: any) => {
+                result.json().then((json: { comment: string, username: string }) => {
+                    this.state.commentRef.value = "";
+                    this.setState({ commentText: "" });
+                    this.props.onCommentPost(json);
+                });
             });
-        });
+        } else {
+            console.log("empty comment");
+        }
     }
 
     render() {
