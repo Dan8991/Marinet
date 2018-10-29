@@ -8,8 +8,38 @@ export interface ILoginState {
     error: string;
 }
 
+const verticalBarStyle = {
+	backgroundColor: "green",
+	width: "100px",
+	height: "700px",
+}
+
+const leftBarStyle = {
+	backgroundColor: "green",
+	width: "100px",
+	height: "300px",
+	transform: "skewX(50deg)",
+}
+
+const rightBarStyle = {
+	backgroundColor: "green",
+	width: "100px",
+	height: "300px",
+	transform: "skewX(-50deg)",
+}
+
+
+const backgroundStyle = {
+	display: "flex",
+	justifyContent: "center",
+	width: "100%",
+	height: "100%",
+	position:"absolute" as "absolute",	
+}
+
 const externGridStyle = {
     display: "grid",
+	position: "relative" as "relative",
     gridTemplateColumns: "auto",
     gridTemplateRows: "auto auto auto auto",
     gridGap: "10px",
@@ -46,31 +76,39 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
     render() {
         return (
-            <div style={externGridStyle}>
-                <div style={internGridCenter}>
-                    <Button
-                        text="Log in"
-                        onClick={() => {
-                            this.onLogInClick(this.state.username, this.state.password)
-                        }}
-                    />
-                    <Button
-                        text="Sign up"
-                        onClick={() => {
-                            this.onSignUpClick(this.state.username, this.state.password)
-                        }}
-                    />
-                </div>
-                <div>
-                    <Edit hint="username" handleChange={this.onUsernameChange} />
-                </div>
-                <div>
-                    <Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
-                </div>
-                <div>
-                    <h1 style={errorStyle}>{this.state.error}</h1>
-                </div>
-            </div>
+			<div>
+				<div style={backgroundStyle}>
+					<div style={verticalBarStyle}></div>
+					<div style={leftBarStyle}></div>
+					<div style={rightBarStyle}></div>
+					<div style={verticalBarStyle}></div>
+				</div>
+				<div style={externGridStyle}>
+					<div style={internGridCenter}>
+						<Button
+							text="Log in"
+							onClick={() => {
+								this.onLogInClick(this.state.username, this.state.password)
+							}}
+						/>
+						<Button
+							text="Sign up"
+							onClick={() => {
+								this.onSignUpClick(this.state.username, this.state.password)
+							}}
+						/>
+					</div>
+					<div>
+						<Edit hint="username" handleChange={this.onUsernameChange} />
+					</div>
+					<div>
+						<Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
+					</div>
+					<div>
+						<h1 style={errorStyle}>{this.state.error}</h1>
+					</div>
+				</div>
+			</div>
         );
     }
 
