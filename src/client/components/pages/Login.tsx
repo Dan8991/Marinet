@@ -9,13 +9,32 @@ export interface ILoginState {
     error: string;
 }
 
+const buttonStyle={
+	borderRadius: "10px",
+	backgroundColor:"#0c5b06",
+	borderColor: "#0c5b06",
+	color: "white",
+	margin: "10px 0px 0px 0px",
+}
+
 const externGridStyle = {
-    display: "grid",
+    display: "flex",
+	position: "relative" as "relative",
+    justifyContent: "center",
+}
+
+const loginStyle = {
+	backgroundColor:"green",
+	display:"grid",
+	opacity:0.5,
+	width: "300px",
 	position: "relative" as "relative",
     gridTemplateColumns: "auto",
     gridTemplateRows: "auto auto auto auto",
     gridGap: "10px",
+	borderRadius:"10px",
     justifyContent: "center",
+	transform: "traslation(0px, -100px)",
 }
 
 const internGridCenter = {
@@ -51,28 +70,31 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 			<div>
 				<Logo/>
 				<div style={externGridStyle}>
-					<div style={internGridCenter}>
-						<Button
-							text="Log in"
-							onClick={() => {
-								this.onLogInClick(this.state.username, this.state.password)
-							}}
-						/>
-						<Button
-							text="Sign up"
-							onClick={() => {
-								this.onSignUpClick(this.state.username, this.state.password)
-							}}
-						/>
-					</div>
-					<div>
-						<Edit hint="username" handleChange={this.onUsernameChange} />
-					</div>
-					<div>
-						<Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
-					</div>
-					<div>
-						<h1 style={errorStyle}>{this.state.error}</h1>
+					<div style={loginStyle}>
+						<div style={internGridCenter}>
+							<Button
+								extraStyle={buttonStyle}
+								text="Log in"
+								onClick={() => {
+									this.onLogInClick(this.state.username, this.state.password)
+								}}
+							/>
+							<Button
+								text="Sign up"
+								onClick={() => {
+									this.onSignUpClick(this.state.username, this.state.password)
+								}}
+							/>
+						</div>
+						<div>
+							<Edit hint="username" handleChange={this.onUsernameChange} />
+						</div>
+						<div>
+							<Edit hint="password" isPassword={true} handleChange={this.onPasswordChange} />
+						</div>
+						<div>
+							<h1 style={errorStyle}>{this.state.error}</h1>
+						</div>
 					</div>
 				</div>
 			</div>

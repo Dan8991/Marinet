@@ -5,7 +5,7 @@ const backgroundStyle = {
 	justifyContent: "center",
 	width: "100%",
 	height: "100%",
-	transform: "scale(1.1) translate(0,100px)",
+	transform: "scale(1.1) translate(0,300px)",
 	position:"absolute" as "absolute",	
 }
 
