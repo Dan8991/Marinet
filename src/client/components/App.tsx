@@ -21,7 +21,6 @@ const h1Style = {
     color: "#087220"
 }
 
-
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class App extends React.Component<{}, IAppState> {
@@ -57,7 +56,7 @@ export class App extends React.Component<{}, IAppState> {
 
     render() {
         return (
-            <div>
+            <div> 
                 <div style={h1Style}>
                     <h1> Welcome to Marinet</h1>
                 </div>

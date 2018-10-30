@@ -1,40 +1,12 @@
 import * as React from "react";
 import { Edit } from "../basic_comp/Edit"
 import { Button } from "../basic_comp/Button";
+import { Logo } from "../basic_comp/Logo";
 
 export interface ILoginState {
     username: string;
     password: string;
     error: string;
-}
-
-const verticalBarStyle = {
-	backgroundColor: "green",
-	width: "100px",
-	height: "700px",
-}
-
-const leftBarStyle = {
-	backgroundColor: "green",
-	width: "100px",
-	height: "300px",
-	transform: "skewX(50deg)",
-}
-
-const rightBarStyle = {
-	backgroundColor: "green",
-	width: "100px",
-	height: "300px",
-	transform: "skewX(-50deg)",
-}
-
-
-const backgroundStyle = {
-	display: "flex",
-	justifyContent: "center",
-	width: "100%",
-	height: "100%",
-	position:"absolute" as "absolute",	
 }
 
 const externGridStyle = {
@@ -77,12 +49,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     render() {
         return (
 			<div>
-				<div style={backgroundStyle}>
-					<div style={verticalBarStyle}></div>
-					<div style={leftBarStyle}></div>
-					<div style={rightBarStyle}></div>
-					<div style={verticalBarStyle}></div>
-				</div>
+				<Logo/>
 				<div style={externGridStyle}>
 					<div style={internGridCenter}>
 						<Button
