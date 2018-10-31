@@ -4,6 +4,7 @@ export interface IEditProps {
     hint?: string;
     handleChange?: (e: any) => void;
     isPassword?: boolean;
+	externalStyle?: any;
 }
 
 //basic input component
@@ -14,7 +15,8 @@ export function Edit(props: IEditProps) {
         <input
             type={props.isPassword ? "password" : "text"}
             placeholder={props.hint || ""}
-            onChange={props.handleChange}>
+            onChange={props.handleChange}
+			style={props.externalStyle}>
         </input>
     );
 }

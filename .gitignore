@@ -22,3 +22,6 @@ src/server/settings
 
 #python linter settings
 .pylintrc
+
+#vim files 
+*.swp
